@@ -3,11 +3,11 @@
 set -o errexit -o nounset -o pipefail
 
 MACHINE=cpu
-BRANCH_NAME="master"
-REPO_URL="https://github.com/pytorch/serve.git"
+BRANCH_NAME="pin0.12.0"
+REPO_URL="https://github.com/LRizoJr/serve.git"
 DOCKER_TAG="pytorch/torchserve:latest-cpu"
 BUILD_TYPE="production"
-BASE_IMAGE="ubuntu:20.04"
+BASE_IMAGE="ubuntu:22.04"
 UPDATE_BASE_IMAGE=false
 USE_CUSTOM_TAG=false
 CUDA_VERSION=""
@@ -135,7 +135,7 @@ do
           CUDA_VERSION="$2"
           if [ "${CUDA_VERSION}" == "cu121" ];
           then
-            BASE_IMAGE="nvidia/cuda:12.1.0-base-ubuntu20.04"
+            BASE_IMAGE="nvidia/cuda:12.1.0-base-ubuntu22.04"
           elif [ "${CUDA_VERSION}" == "cu118" ];
           then
             BASE_IMAGE="nvidia/cuda:11.8.0-base-ubuntu20.04"
@@ -209,7 +209,7 @@ then
   then
     if [ "${CUDA_VERSION}" == "cu121" ];
     then
-      BASE_IMAGE="nvidia/cuda:12.1.1-devel-ubuntu20.04"
+      BASE_IMAGE="nvidia/cuda:12.1.0-devel-ubuntu22.04"
     elif [ "${CUDA_VERSION}" == "cu118" ];
     then
       BASE_IMAGE="nvidia/cuda:11.8.0-devel-ubuntu20.04"
