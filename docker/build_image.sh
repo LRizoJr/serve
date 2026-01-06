@@ -209,7 +209,7 @@ then
   then
     if [ "${CUDA_VERSION}" == "cu121" ];
     then
-      BASE_IMAGE="nvidia/cuda:12.1.0-devel-ubuntu22.04"
+      BASE_IMAGE="nvidia/cuda:12.1.1-devel-ubuntu22.04"
     elif [ "${CUDA_VERSION}" == "cu118" ];
     then
       BASE_IMAGE="nvidia/cuda:11.8.0-devel-ubuntu20.04"
