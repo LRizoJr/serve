@@ -3,10 +3,10 @@
 set -o errexit -o nounset -o pipefail
 
 MACHINE=cpu
-BRANCH_NAME="master"
+BRANCH_NAME="pin0.10.0"
 DOCKER_TAG="pytorch/torchserve:latest-cpu"
 BUILD_TYPE="production"
-BASE_IMAGE="ubuntu:20.04"
+BASE_IMAGE="ubuntu:22.04"
 UPDATE_BASE_IMAGE=false
 USE_CUSTOM_TAG=false
 CUDA_VERSION=""
@@ -49,7 +49,7 @@ do
         -g|--gpu)
           MACHINE=gpu
           DOCKER_TAG="pytorch/torchserve:latest-gpu"
-          BASE_IMAGE="nvidia/cuda:11.8.0-base-ubuntu20.04"
+          BASE_IMAGE="nvidia/cuda:11.8.0-base-ubuntu22.04"
           CUDA_VERSION="cu117"
           shift
           ;;
@@ -102,7 +102,7 @@ do
           CUDA_VERSION="$2"
           if [ "${CUDA_VERSION}" == "cu121" ];
           then
-            BASE_IMAGE="nvidia/cuda:12.1.0-base-ubuntu20.04"
+            BASE_IMAGE="nvidia/cuda:12.1.0-base-ubuntu22.04"
           elif [ "${CUDA_VERSION}" == "cu118" ];
           then
             BASE_IMAGE="nvidia/cuda:11.8.0-base-ubuntu20.04"
@@ -176,7 +176,7 @@ then
   then
     if [ "${CUDA_VERSION}" == "cu121" ];
     then
-      BASE_IMAGE="nvidia/cuda:12.1.1-devel-ubuntu20.04"
+      BASE_IMAGE="nvidia/cuda:12.1.1-devel-ubuntu22.04"
     elif [ "${CUDA_VERSION}" == "cu118" ];
     then
       BASE_IMAGE="nvidia/cuda:11.8.0-devel-ubuntu20.04"
