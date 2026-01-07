@@ -216,7 +216,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     numactl \
     && if [ "$BUILD_WITH_IPEX" = "true" ]; then apt-get update && apt-get install -y libjemalloc-dev libgoogle-perftools-dev libomp-dev && ln -s /usr/lib/x86_64-linux-gnu/libjemalloc.so /usr/lib/libjemalloc.so && ln -s /usr/lib/x86_64-linux-gnu/libtcmalloc.so /usr/lib/libtcmalloc.so && ln -s /usr/lib/x86_64-linux-gnu/libiomp5.so /usr/lib/libiomp5.so; fi \
     && rm -rf /var/lib/apt/lists/*
-RUN git clone --recursive https://github.com/pytorch/serve.git \
+RUN git clone --recursive https://github.com/LRizoJr/serve.git \
     && cd serve \
     && git checkout ${BRANCH_NAME}
 COPY --from=compile-image /home/venv /home/venv
