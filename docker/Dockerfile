@@ -85,7 +85,11 @@ RUN \
 # Make sure latest version of torchserve is uploaded before running this
 RUN \
     if echo "$BUILD_NIGHTLY" | grep -q "false"; then \
-        python -m pip install --no-cache-dir torchserve==0.10.0 torch-model-archiver==0.10.0 torch-workflow-archiver==0.2.12 torch==2.2.1+cpu torchaudio==2.2.1+cpu torchdata==0.7.1 torchtext==0.17.1+cpu torchvision==0.17.1+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html;\
+        if [ "$USE_CUDA_VERSION" ]; then \
+            python -m pip install --no-cache-dir torchserve==0.10.0 torch-model-archiver==0.10.0 torch-workflow-archiver==0.2.12 torch==2.2.1+cu121 torchaudio==2.2.1+cu121 torchdata==0.7.1 torchtext==0.17.1 torchvision==0.17.1+cu121 -f https://download.pytorch.org/whl/cu121/torch_stable.html;\
+        else \
+            python -m pip install --no-cache-dir torchserve==0.10.0 torch-model-archiver==0.10.0 torch-workflow-archiver==0.2.12 torch==2.2.1+cpu torchaudio==2.2.1+cpu torchdata==0.7.1 torchtext==0.17.1+cpu torchvision==0.17.1+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html;\
+        fi; \
     else \
         python -m pip install --no-cache-dir torchserve-nightly torch-model-archiver-nightly torch-workflow-archiver-nightly;\
     fi
